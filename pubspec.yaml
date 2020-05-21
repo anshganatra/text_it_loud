@@ -1,0 +1,35 @@
+name: text_it_loud
+description: A new Flutter project.
+
+publish_to: 'none' 
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  animated_text_kit: ^2.0.1
+  cupertino_icons: ^0.1.3
+  shared_preferences: ^0.5.7+2
+  
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+
+  uses-material-design: true
+
+  assets:
+    - images/
+
+  fonts:
+    - family: Volkhov
+      fonts:
+        - asset: fonts/Volkhov/Volkhov-Regular.ttf
+        - asset: fonts/Volkhov/Volkhov-Bold.ttf
+        - asset: fonts/Volkhov/Volkhov-BoldItalic.ttf
+        - asset: fonts/Volkhov/Volkhov-Italic.ttf

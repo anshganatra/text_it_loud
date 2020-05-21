@@ -1,0 +1,61 @@
+textitloud
+    -> Welcome Screen
+        -> Group
+            -> Create
+            -> Join
+        -> Individual
+            -> Create
+            -> Join
+        -> Transcripts
+        -> Settings
+            -> Default Username
+            -> Default Translation Language
+            -> App Language
+    -> Chat Screen
+        -> Chat Bubbules
+            -> Sender Username
+            -> Translated Text
+        -> (only for speakers) Mic Listening Button
+        -> session name and username list
+
+
+-> Create
+    -> Session Name
+    -> Session Username
+    -> Session ID
+    -> Session Password
+    -> Role   
+    -> Save Transcript Y/N
+-> Join
+    -> Session Username
+    -> Session ID
+    -> Session Password
+    -> Role   
+    -> Save Transcript Y/N
+
+
+✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔
+
+height: 780
+width: 360
+
+TODOS:
+
+    [] session_config_screen
+        [✔] roles dropdown
+        [✔] transcript saving checkbox
+        [✔] take care of the overflow on the screen when keyboard pops up by scoll/listview
+        [✔] make CREATE and JOIN screens different
+        [✔] formatting
+        [] default username value
+        [] session id generation
+
+    [] settings_screen
+        [✔] add dropdown for languages
+        [] default username value
+
+    [] chat_screen
+        [] chat bubble design
+        [] session name and members
+        [] firebase connectivity
+
