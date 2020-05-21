@@ -61,8 +61,8 @@ class JoinScreen extends StatelessWidget {
                     label: 'PASSWORD:', isPasswordField: true),
                 DropdownTile(
                   label: 'SELECT ROLE:  ',
-                  isRoleDropdowm: true,
                   dropdownList: ['Listener', 'Speaker'],
+                  isRoleDropdown: true,
                 ),
                 TranscriptSavingCheckboxTile(),
                 Padding(

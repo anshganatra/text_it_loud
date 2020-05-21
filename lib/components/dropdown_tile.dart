@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import '../constants.dart';
-import 'dropdown_custom.dart';
+import 'dropdown_custom_languages.dart';
+import 'dropdown_custom_roles.dart';
 
 class DropdownTile extends StatelessWidget {
-  final bool isRoleDropdowm;
+  final bool isRoleDropdown;
   final String label;
   final List<String> dropdownList;
-  // final String defaultValue;
-  DropdownTile({this.label, this.dropdownList, this.isRoleDropdowm});
+  DropdownTile({this.label, this.dropdownList, this.isRoleDropdown});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class DropdownTile extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.only(bottom: 15.0, right: 40.0),
-          child: CustomDropDown(dropdownList,isRoleDropdowm),
+          child: isRoleDropdown?CustomDropDownRoles(dropdownList):CustomDropdownLanguages(dropdownList),
         ),
       ],
     );

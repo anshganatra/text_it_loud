@@ -17,8 +17,6 @@ class CreateScreen extends StatelessWidget {
         body: Container(
           child: Center(
             child: ListView(
-              // crossAxisAlignment: CrossAxisAlignment.center,
-              // mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Padding(
                   padding:
@@ -27,7 +25,6 @@ class CreateScreen extends StatelessWidget {
                     tag: 'textitloud',
                     child: Text(
                       'Text-It-Loud',
-                      // textAlign: TextAlign.center,
                       style: kTextItLoudHeadingStyle,
                     ),
                   ),
@@ -68,7 +65,7 @@ class CreateScreen extends StatelessWidget {
                 DropdownTile(
                   label: 'SELECT ROLE:  ',
                   dropdownList: ['Listener', 'Speaker'],
-                  isRoleDropdowm: false,
+                  isRoleDropdown: true,
                 ),
                 TranscriptSavingCheckboxTile(),
                 Padding(

@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:text_it_loud/constants.dart';
 
-class CustomDropDown extends StatefulWidget {
-  final bool isRoleDropdowm;
+class CustomDropDownRoles extends StatefulWidget {
   final List<String> dropdownList;
-  CustomDropDown(this.dropdownList, this.isRoleDropdowm);
+  CustomDropDownRoles(this.dropdownList);
 
   @override
-  _CustomDropDownState createState() => _CustomDropDownState();
+  _CustomDropDownRolesState createState() => _CustomDropDownRolesState();
 }
 
-class _CustomDropDownState extends State<CustomDropDown> {
-  String dropdownValue = (widget.isRoleDropdowm)?'Listener':'English';
+class _CustomDropDownRolesState extends State<CustomDropDownRoles> {
+  String dropdownValue;
+  // (widget.isRoleDropdowm)?'Listener':'English';
 
   @override
   Widget build(BuildContext context) {

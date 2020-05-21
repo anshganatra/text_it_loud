@@ -58,7 +58,7 @@ class SettingsScreen extends StatelessWidget {
               DropdownTile(
                 label: 'LANGUAGE:',
                 dropdownList: supportedLanguages,
-                isRoleDropdowm: true,
+                isRoleDropdown: false,
               ),
               SizedBox(
                 height: 25.0,

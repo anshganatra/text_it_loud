@@ -36,14 +36,11 @@ String getsessionName(){
     return null;
   }
 }
-bool isRoleDropdown;
-String setDropDownDefaultValue(){
-  if(isRoleDropdown){
-    return 'Listener';
-  } else {
-    return 'English';
-  }
+
+String defaultLanguage='English';
+void setDefaultLanguage(String newDefaultLanguage){
+  defaultLanguage=newDefaultLanguage;
 }
-void setDropdownRole(bool isCalledForLanguages){
-  isRoleDropdown=isCalledForLanguages?false:true;
+String getDefaultLanguage(){
+  return defaultLanguage;
 }
