@@ -10,7 +10,7 @@ class CustomDropDownRoles extends StatefulWidget {
 }
 
 class _CustomDropDownRolesState extends State<CustomDropDownRoles> {
-  String dropdownValue;
+  String dropdownValue='Listener';
   // (widget.isRoleDropdowm)?'Listener':'English';
 
   @override
@@ -21,6 +21,7 @@ class _CustomDropDownRolesState extends State<CustomDropDownRoles> {
       onChanged: (String newValue) {
         setState(() {
           dropdownValue = newValue;
+          setSessionRole(newValue);
         });
       },
       items: widget.dropdownList

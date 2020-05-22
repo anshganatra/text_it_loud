@@ -35,14 +35,21 @@ class MessageBubble extends StatelessWidget {
                     topRight: Radius.circular(30.0),
                   ),
             elevation: 5.0,
-            color: isMe ? Colors.grey[400] : Colors.white,
+            color: isMe
+                ? Colors.grey[300].withBlue(210).withRed(200)
+                : Colors.white.withGreen(250),
             child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-              child: Text(text,
-                  style: kTextItLoudHeadingStyle.copyWith(
-                    color: isMe ? Colors.black54 : Colors.black,
-                    fontSize: 16.0,
-                  )),
+              padding:
+                  EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+              child: Text(
+                text,
+                softWrap: true,
+                textWidthBasis: TextWidthBasis.longestLine,
+                style: kTextItLoudHeadingStyle.copyWith(
+                  color: isMe ? Colors.black : Colors.black,
+                  fontSize: 16.0,
+                ),
+              ),
             ),
           ),
         ],

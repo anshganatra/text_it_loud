@@ -34,28 +34,33 @@ textitloud
     -> Save Transcript Y/N
 
 
-✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔
+✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔ 
 
 height: 780
 width: 360
 
 TODOS:
 
-    [] session_config_screen
+    [✔] session_config_screen
         [✔] roles dropdown
         [✔] transcript saving checkbox
         [✔] take care of the overflow on the screen when keyboard pops up by scoll/listview
         [✔] make CREATE and JOIN screens different
         [✔] formatting
-        [] default username value
-        [] session id generation
+        [✔] default username value
+        [✔] session id generation
+        [✔] session id copy ability
 
-    [] settings_screen
+
+    [✔] settings_screen
         [✔] add dropdown for languages
-        [] default username value
+        [✔] default username value
 
     [] chat_screen
-        [] chat bubble design
+        [✔] chat bubble design
         [] session name and members
         [] firebase connectivity
+
+    [] create_screen
+        [✔] toast on long press to copy session id
 
