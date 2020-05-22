@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "341904922108",
+    "firebase_url": "https://text-it-loud.firebaseio.com",
+    "project_id": "text-it-loud",
+    "storage_bucket": "text-it-loud.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:341904922108:android:9c532a57cbf41549d20e79",
+        "android_client_info": {
+          "package_name": "anshganatra.text_it_loud"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "341904922108-nehkm8eo67meds5mmc63spjv27fca1k4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZGhW65JcmNzt513v0B-1mf-gEed5KPco"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "341904922108-nehkm8eo67meds5mmc63spjv27fca1k4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
