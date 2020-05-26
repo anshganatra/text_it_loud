@@ -1,6 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:text_it_loud/components/message_bubble.dart';
 import 'package:text_it_loud/constants.dart';
+
+Firestore _firestore= Firestore.instance;
 
 class ChatScreen extends StatelessWidget {
   final List randomMessages = [
@@ -56,6 +59,7 @@ class ChatScreen extends StatelessWidget {
     },
   ];
 
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -63,7 +67,7 @@ class ChatScreen extends StatelessWidget {
         appBar: AppBar(
           centerTitle: true,
           title: Text(
-            '<session name>',
+            '${getSessionName()} (${getSessionId()})',
             style: kTextItLoudHeadingStyle.copyWith(fontSize: 16.0),
           ),
           backgroundColor: Colors.grey[200],
@@ -71,7 +75,7 @@ class ChatScreen extends StatelessWidget {
             icon: Icon(Icons.arrow_back),
             color: Colors.black,
             onPressed: () {
-              Navigator.pop(context);
+              showExitDialog(context);
             },
           ),
           actions: <Widget>[
@@ -100,3 +104,44 @@ class ChatScreen extends StatelessWidget {
     );
   }
 }
+
+// class MessagesStream extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return StreamBuilder<DocumentSnapshot>(
+//       stream: _firestore.collection('messages').document('sessionid1').snapshots(),
+//       builder: (context, snapshot) {
+//         if (!snapshot.hasData) {
+//           return Center(
+//             child: CircularProgressIndicator(
+//               backgroundColor: Colors.lightBlueAccent,
+//             ),
+//           );
+//         }
+//         final messages = snapshot.data.documents.reversed;
+//         List<MessageBubble> messageBubbles = [];
+//         for (var message in messages) {
+//           final messageText = message.data['text'];
+//           final messageSender = message.data['sender'];
+
+//           final currentUser = loggedInUser.email;
+
+//           final messageBubble = MessageBubble(
+//             sender: messageSender,
+//             text: messageText,
+//             isMe: currentUser == messageSender,
+//           );
+
+//           messageBubbles.add(messageBubble);
+//         }
+//         return Expanded(
+//           child: ListView(
+//             reverse: true,
+//             padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
+//             children: messageBubbles,
+//           ),
+//         );
+//       },
+//     );
+//   }
+// }

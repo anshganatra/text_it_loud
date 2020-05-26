@@ -17,7 +17,7 @@ class CreateScreen extends StatelessWidget {
           ? (rand.nextInt(26) + 97)
           : (rand.nextInt(26) + 65);
     });
-    setssessionId(String.fromCharCodes(codeUnits));
+    setSessionId(String.fromCharCodes(codeUnits));
     return sessionId;
   }
 
@@ -63,9 +63,11 @@ class CreateScreen extends StatelessWidget {
                   SizedBox(
                     height: 45.0,
                   ),
-                  ConfigScreenTextField(
+                  ConfigScreenTextFieldMemory(
                     label: 'SESSION NAME:',
                     isPasswordField: false,
+                    setTextFieldValue: setSessionName,
+                    getTextFieldValue: getSessionName,
                   ),
                   ConfigScreenTextFieldMemory(
                     label: 'USERNAME:',
@@ -73,9 +75,11 @@ class CreateScreen extends StatelessWidget {
                     setTextFieldValue: setSessionUsername,
                     getTextFieldValue: getDefaultUsername,
                   ),
-                  ConfigScreenTextField(
+                  ConfigScreenTextFieldMemory(
                     label: 'PASSWORD:',
                     isPasswordField: true,
+                    setTextFieldValue: setSessionPassword,
+                    getTextFieldValue: getSessionPassword,
                   ),
                   DropdownTile(
                     label: 'SELECT ROLE:  ',
@@ -88,11 +92,13 @@ class CreateScreen extends StatelessWidget {
                     child: GestureDetector(
                       onLongPress: () {
                         Clipboard.setData(ClipboardData(text: sessionId));
-                        Toast.show("Copied Session ID",context,
-                            duration: Toast.LENGTH_SHORT,
-                            gravity: Toast.BOTTOM,
-                            backgroundRadius: 30.0,
-                            );
+                        Toast.show(
+                          "Copied Session ID",
+                          context,
+                          duration: Toast.LENGTH_SHORT,
+                          gravity: Toast.BOTTOM,
+                          backgroundRadius: 30.0,
+                        );
                       },
                       child: Text(
                         'SESSION ID:     ${sessionIdGenerator()}',

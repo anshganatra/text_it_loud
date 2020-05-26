@@ -11,7 +11,6 @@ class CustomDropDownRoles extends StatefulWidget {
 
 class _CustomDropDownRolesState extends State<CustomDropDownRoles> {
   String dropdownValue='Listener';
-  // (widget.isRoleDropdowm)?'Listener':'English';
 
   @override
   Widget build(BuildContext context) {

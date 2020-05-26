@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:text_it_loud/screens/welcome_scren.dart';
 
 const TextStyle kTextItLoudHeadingStyle = TextStyle(
   fontSize: 30.0,
@@ -75,19 +76,38 @@ String sessionUsername;
 void setDefaultUsername(String newUsername) {
   defaultUsername = newUsername;
 }
+
 String getDefaultUsername() {
   return defaultUsername;
 }
+
 void setSessionUsername(String newUsername) {
   sessionUsername = newUsername;
 }
 
+void setSessionUsernameToNull() {
+  sessionUsername = '';
+}
+
+String sessionPassword = '';
+void setSessionPassword(String newSessionPassword) {
+  sessionPassword = newSessionPassword;
+}
+
+String getSessionPassword() {
+  if (sessionPassword.length != 0) {
+    return sessionPassword;
+  } else {
+    return null;
+  }
+}
 
 String sessionName = '';
-void setsessionName(String newSessionName) {
+void setSessionName(String newSessionName) {
   sessionName = newSessionName;
 }
-String getsessionName() {
+
+String getSessionName() {
   if (sessionName.length != 0) {
     return sessionName;
   } else {
@@ -95,21 +115,21 @@ String getsessionName() {
   }
 }
 
-
 String defaultLanguage = 'English';
 void setDefaultLanguage(String newDefaultLanguage) {
   defaultLanguage = newDefaultLanguage;
 }
+
 String getDefaultLanguage() {
   return defaultLanguage;
 }
 
-
-String sessionId;
-void setssessionId(String mewSessionId) {
-  sessionId = mewSessionId;
+String sessionId = '';
+void setSessionId(String newSessionId) {
+  sessionId = newSessionId;
 }
-String getssessionId() {
+
+String getSessionId() {
   if (sessionName.length != 0) {
     return sessionId;
   } else {
@@ -130,3 +150,37 @@ void setSessionRole(String newSessionRole) {
 //   }
 // }
 
+Future<void> showExitDialog(context) async {
+  return showDialog<void>(
+    context: context,
+    barrierDismissible: false, // user must tap button!
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text('Exit Session',style: kTextItLoudHeadingStyle.copyWith(fontSize:16.0),),
+        content: SingleChildScrollView(
+          child: ListBody(
+            children: <Widget>[
+              Text('You are about to exit a session.',style: kTextItLoudHeadingStyle.copyWith(fontSize:16.0),),
+              Text('Are you sure?',style: kTextItLoudHeadingStyle.copyWith(fontSize:16.0),),
+            ],
+          ),
+        ),
+        actions: <Widget>[
+          FlatButton(
+            child: Text('Yes',style: kTextItLoudHeadingStyle.copyWith(fontSize:16.0),),
+            onPressed: () {
+              setSessionUsernameToNull();
+              Navigator.pushNamed(context, '/');
+            },
+          ),
+          FlatButton(
+            child: Text('No',style: kTextItLoudHeadingStyle.copyWith(fontSize:16.0),),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+        ],
+      );
+    },
+  );
+}
