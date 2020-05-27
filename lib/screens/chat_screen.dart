@@ -3,16 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:text_it_loud/components/message_bubble.dart';
 import 'package:text_it_loud/constants.dart';
 
-Firestore _firestore= Firestore.instance;
+Firestore _firestore = Firestore.instance;
 
 class ChatScreen extends StatefulWidget {
-
   @override
   _ChatScreenState createState() => _ChatScreenState();
 }
 
 class _ChatScreenState extends State<ChatScreen> {
-
   final messageTextController = TextEditingController();
   String messageText;
 
@@ -47,35 +45,42 @@ class _ChatScreenState extends State<ChatScreen> {
         ),
         backgroundColor: Colors.grey[200],
         body: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            MessagesStream(),
+            Expanded(child: MessagesStream()),
             Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Expanded(
-                    child: TextField(
-                      controller: messageTextController,
-                      onChanged: (value) {
-                        messageText = value;
-                      },
-                      style: kTextItLoudHeadingStyle.copyWith(fontSize:16.0),
-                    ),
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Expanded(
+                  child: TextField(
+                    controller: messageTextController,
+                    onChanged: (value) {
+                      messageText = value;
+                    },
+                    style: kTextItLoudHeadingStyle.copyWith(fontSize: 16.0),
                   ),
-                  FlatButton(
-                    onPressed: () {
+                ),
+                FlatButton(
+                  onPressed: () {
+                    if (messageText.length > 0) {
                       messageTextController.clear();
-                      _firestore.collection('sessions').document('sessionid1').collection('listOfMessages').add({
+                      _firestore
+                          .collection('sessions')
+                          .document('$sessionId')
+                          .collection('listOfMessages')
+                          .add({
                         'text': messageText,
                         'sender': sessionUsername,
                       });
-                    },
-                    child: Text(
-                      'Send',
-                      style: kTextItLoudHeadingStyle.copyWith(fontSize:16.0),
-                    ),
+                    }
+                  },
+                  child: Text(
+                    'Send',
+                    style: kTextItLoudHeadingStyle.copyWith(fontSize: 16.0),
                   ),
-                ],
-              ),
+                ),
+              ],
+            ),
           ],
         ),
       ),
@@ -87,12 +92,17 @@ class MessagesStream extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-      stream: _firestore.collection('sessions').document('sessionid1').collection('listOfMessages').snapshots(),
+      stream: _firestore
+          .collection('sessions')
+          .document('$sessionId')
+          .collection('listOfMessages')
+          .snapshots(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
           return Center(
             child: CircularProgressIndicator(
-              backgroundColor: Colors.lightBlueAccent,
+              backgroundColor: Colors.grey,
+              valueColor: AlwaysStoppedAnimation<Color>(Colors.black),
             ),
           );
         }
@@ -111,7 +121,7 @@ class MessagesStream extends StatelessWidget {
           messageBubbles.add(messageBubble);
         }
         return Expanded(
-                  child: ListView(
+          child: ListView(
             reverse: true,
             padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
             children: messageBubbles,

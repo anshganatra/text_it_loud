@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:text_it_loud/components/config_screen_textfield.dart';
@@ -8,6 +9,8 @@ import 'package:text_it_loud/components/transcript_checkbox_tile.dart';
 import '../constants.dart';
 import 'dart:math';
 import 'package:toast/toast.dart';
+
+Firestore _firestore = Firestore.instance;
 
 class CreateScreen extends StatelessWidget {
   String sessionIdGenerator() {
@@ -115,7 +118,29 @@ class CreateScreen extends StatelessWidget {
                     child: RoundRectangleButton(
                       title: 'START SESSION',
                       onTap: () {
-                        Navigator.pushNamed(context, '/chat');
+                        if (sessionUsername != '' &&
+                            sessionName != '' &&
+                            sessionPassword.length > 0) {
+                          _firestore
+                              .collection('sessions')
+                              .document('$sessionId').setData({
+                                'created by': sessionUsername,
+                                'session name': sessionName,
+                                'created on': DateTime.now(),
+                              });
+                          _firestore
+                              .collection('sessions')
+                              .document('$sessionId')
+                              .collection('listOfMessages');
+                          _firestore
+                              .collection('sessions')
+                              .document('$sessionId')
+                              .collection('listOfUsers')
+                              .add({'adminUsername': sessionUsername});
+                          Navigator.pushNamed(context, '/chat');
+                        } else {
+                          showInvalidDataDialog(context);
+                        }
                       },
                     ),
                   ),

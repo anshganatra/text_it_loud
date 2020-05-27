@@ -156,25 +156,82 @@ Future<void> showExitDialog(context) async {
     barrierDismissible: false, // user must tap button!
     builder: (BuildContext context) {
       return AlertDialog(
-        title: Text('Exit Session',style: kTextItLoudHeadingStyle.copyWith(fontSize:16.0),),
+        title: Text(
+          'Exit Session',
+          style: kTextItLoudHeadingStyle.copyWith(fontSize: 16.0),
+        ),
         content: SingleChildScrollView(
           child: ListBody(
             children: <Widget>[
-              Text('You are about to exit a session.',style: kTextItLoudHeadingStyle.copyWith(fontSize:16.0),),
-              Text('Are you sure?',style: kTextItLoudHeadingStyle.copyWith(fontSize:16.0),),
+              Text(
+                'You are about to exit a session.',
+                style: kTextItLoudHeadingStyle.copyWith(fontSize: 16.0),
+              ),
+              Text(
+                'Are you sure?',
+                style: kTextItLoudHeadingStyle.copyWith(fontSize: 16.0),
+              ),
             ],
           ),
         ),
         actions: <Widget>[
           FlatButton(
-            child: Text('Yes',style: kTextItLoudHeadingStyle.copyWith(fontSize:16.0),),
+            child: Text(
+              'Yes',
+              style: kTextItLoudHeadingStyle.copyWith(fontSize: 16.0),
+            ),
             onPressed: () {
               setSessionUsernameToNull();
+              setSessionName('');
+              setSessionPassword('');
               Navigator.pushNamed(context, '/');
             },
           ),
           FlatButton(
-            child: Text('No',style: kTextItLoudHeadingStyle.copyWith(fontSize:16.0),),
+            child: Text(
+              'No',
+              style: kTextItLoudHeadingStyle.copyWith(fontSize: 16.0),
+            ),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+        ],
+      );
+    },
+  );
+}
+
+Future<void> showInvalidDataDialog(context) async {
+  return showDialog<void>(
+    context: context,
+    barrierDismissible: false,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text(
+          'Invalid Input',
+          style: kTextItLoudHeadingStyle.copyWith(fontSize: 16.0),
+        ),
+        content: SingleChildScrollView(
+          child: ListBody(
+            children: <Widget>[
+              Text(
+                'The data entered in the input fields is invalid.',
+                style: kTextItLoudHeadingStyle.copyWith(fontSize: 16.0),
+              ),
+              Text(
+                'Please try again.',
+                style: kTextItLoudHeadingStyle.copyWith(fontSize: 16.0),
+              ),
+            ],
+          ),
+        ),
+        actions: <Widget>[
+          FlatButton(
+            child: Text(
+              'OK',
+              style: kTextItLoudHeadingStyle.copyWith(fontSize: 16.0),
+            ),
             onPressed: () {
               Navigator.pop(context);
             },
