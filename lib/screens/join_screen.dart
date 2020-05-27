@@ -69,7 +69,9 @@ class JoinScreen extends StatelessWidget {
                   padding: const EdgeInsets.all(13.0),
                   child: RoundRectangleButton(
                     title: 'START SESSION',
-                    onPressedNavigator: 'chat',
+                    onTap: () {
+                      Navigator.pushNamed(context, '/chat');
+                    },
                   ),
                 ),
               ],

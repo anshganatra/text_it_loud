@@ -23,15 +23,19 @@ class CreateJoinScreen extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height/780*75.0,
+                  height: MediaQuery.of(context).size.height / 780 * 75.0,
                 ),
                 RoundRectangleButton(
                   title: 'CREATE',
-                  onPressedNavigator: 'createscreen',
+                  onTap: () {
+                    Navigator.pushNamed(context, '/createscreen');
+                  },
                 ),
                 RoundRectangleButton(
                   title: 'JOIN',
-                  onPressedNavigator: 'joinscreen',
+                  onTap: () {
+                    Navigator.pushNamed(context, '/joinscreen');
+                  },
                 ),
               ],
             ),

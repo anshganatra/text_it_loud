@@ -67,7 +67,9 @@ class SettingsScreen extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: RoundRectangleButton(
                   title: 'SAVE',
-                  onPressedNavigator: '',
+                  onTap: () {
+                    Navigator.pushNamed(context, '/');
+                  },
                 ),
               ),
             ],

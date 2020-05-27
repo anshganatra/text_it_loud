@@ -27,23 +27,31 @@ class WelcomeScreen extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height*75.0/780.0,
+                  height: MediaQuery.of(context).size.height * 75.0 / 780.0,
                 ),
                 RoundRectangleButton(
                   title: 'GROUP',
-                  onPressedNavigator: 'createjoin',
+                  onTap: () {
+                    Navigator.pushNamed(context, '/createjoin');
+                  },
                 ),
                 RoundRectangleButton(
                   title: 'INDIVIDUAL',
-                  onPressedNavigator: 'createjoin',
+                  onTap: () {
+                    Navigator.pushNamed(context, '/createjoin');
+                  },
                 ),
                 RoundRectangleButton(
                   title: 'TRANSCRIPTS',
-                  onPressedNavigator: 'transcripts',
+                  onTap: () {
+                    Navigator.pushNamed(context, '/transcripts');
+                  },
                 ),
                 RoundRectangleButton(
                   title: 'SETTINGS',
-                  onPressedNavigator: 'settings',
+                  onTap: () {
+                    Navigator.pushNamed(context, '/settings');
+                  },
                 ),
               ],
             ),
