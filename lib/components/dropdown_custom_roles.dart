@@ -13,6 +13,12 @@ class _CustomDropDownRolesState extends State<CustomDropDownRoles> {
   String dropdownValue='Listener';
 
   @override
+  void initState() { 
+    super.initState();
+    setSessionRole('Listener');
+  }
+
+  @override
   Widget build(BuildContext context) {
     return DropdownButton<String>(
       style: kTextItLoudHeadingStyle.copyWith(fontSize:16.0),

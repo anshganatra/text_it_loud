@@ -34,7 +34,7 @@ textitloud
     -> Save Transcript Y/N
 
 
-✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔ 
+✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔ 
 
 height: 780
 width: 360
@@ -58,12 +58,15 @@ TODOS:
 
     [] chat_screen
         [✔] chat bubble design
-        [] session name and members
-        [] firebase connectivity
+        [✔] session name
+        [] session members and details modal
+        [✔] firebase connectivity
 
-    [] create_screen
+    [✔] create_screen
         [✔] toast on long press to copy session id    
 
+
+    [] persistent storage of default username and language
                                                                  
 
 [] CHECK IF COMPLETE OFFLINE FUNCTIONALITY IS POSSIBLE USING WIFI DIRECT ETC

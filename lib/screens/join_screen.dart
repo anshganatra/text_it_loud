@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:text_it_loud/components/config_screen_textfield.dart';
 import 'package:text_it_loud/components/dropdown_tile.dart';
@@ -5,6 +6,8 @@ import 'package:text_it_loud/components/round_rectangle_button.dart';
 import 'package:text_it_loud/components/textfield_with_memory.dart';
 import 'package:text_it_loud/components/transcript_checkbox_tile.dart';
 import '../constants.dart';
+
+Firestore _firestore = Firestore.instance;
 
 class JoinScreen extends StatelessWidget {
   // final String sessionid = 'pXqR5';
@@ -69,8 +72,47 @@ class JoinScreen extends StatelessWidget {
                   padding: const EdgeInsets.all(13.0),
                   child: RoundRectangleButton(
                     title: 'START SESSION',
-                    onTap: () {
-                      Navigator.pushNamed(context, '/chat');
+                    onTap: () async {
+                      var sessionDetails = await _firestore
+                          .collection('sessions')
+                          .document('$sessionId').get();
+                          print(sessionDetails);
+                          if (sessionId ==
+                              _firestore
+                                  .collection('sessions')
+                                  .document('$sessionId')
+                                  .get()
+                                  .then((value) => value['session id'])
+                                  .toString() &&
+                          sessionPassword ==
+                              _firestore
+                                  .collection('sessions')
+                                  .document('$sessionId')
+                                  .get()
+                                  .then((value) => value['session password'])
+                                  .toString()) {
+                        _firestore
+                            .collection('sessions')
+                            .document('$sessionId')
+                            .collection('listOfUsers')
+                            .add({
+                          'username': sessionUsername,
+                          'role': sessionRole
+                        });
+                        print(_firestore
+                            .collection('sessions')
+                            .document('$sessionId')
+                            .get()
+                            .then((value) => value['session id'])
+                            .toString());
+                        print(_firestore
+                            .collection('sessions')
+                            .document('$sessionId')
+                            .get()
+                            .then((value) => value['session password'])
+                            .toString());
+                        Navigator.pushNamed(context, '/chat');
+                      }
                     },
                   ),
                 ),

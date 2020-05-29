@@ -32,7 +32,7 @@ class SettingsScreen extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 15.0),
                     child: Text(
-                      'SETTINGS',
+                      'DEFAULT SETTINGS',
                       style: kTextItLoudHeadingStyle.copyWith(
                           fontSize: 16.0, fontWeight: FontWeight.w300),
                     ),

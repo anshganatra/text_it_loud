@@ -37,6 +37,7 @@ class _ChatScreenState extends State<ChatScreen> {
               icon: Icon(Icons.info_outline),
               color: Colors.black,
               onPressed: () {
+                Navigator.pushNamed(context, '/sessiondetails');
                 print('tap on info');
               },
             ),

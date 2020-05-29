@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:text_it_loud/screens/welcome_scren.dart';
 
 const TextStyle kTextItLoudHeadingStyle = TextStyle(
@@ -78,6 +79,7 @@ void setDefaultUsername(String newUsername) {
 }
 
 String getDefaultUsername() {
+  sessionUsername = defaultUsername;
   return defaultUsername;
 }
 

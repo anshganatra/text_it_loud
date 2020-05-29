@@ -11,7 +11,7 @@ import 'package:toast/toast.dart';
 
 Firestore _firestore = Firestore.instance;
 
-class CreateScreen extends StatelessWidget {
+class SessionDetails extends StatelessWidget {
   String sessionIdGenerator() {
     var rand = new Random();
     var codeUnits = new List.generate(6, (index) {
@@ -23,7 +23,6 @@ class CreateScreen extends StatelessWidget {
     return sessionId;
   }
 
-  // final String sessionid = 'pXqR5';
   final String dropDownValue = 'Listener';
   @override
   Widget build(BuildContext context) {
@@ -49,7 +48,7 @@ class CreateScreen extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 15.0),
                     child: Text(
-                      'SESSION CONFIG',
+                      'SESSION DETAILS',
                       textAlign: TextAlign.center,
                       style: kTextItLoudHeadingStyle.copyWith(
                           fontSize: 16.0, fontWeight: FontWeight.w300),
@@ -65,30 +64,6 @@ class CreateScreen extends StatelessWidget {
                   SizedBox(
                     height: 45.0,
                   ),
-                  ConfigScreenTextFieldMemory(
-                    label: 'SESSION NAME:',
-                    isPasswordField: false,
-                    setTextFieldValue: setSessionName,
-                    getTextFieldValue: getSessionName,
-                  ),
-                  ConfigScreenTextFieldMemory(
-                    label: 'USERNAME:',
-                    isPasswordField: false,
-                    setTextFieldValue: setSessionUsername,
-                    getTextFieldValue: getDefaultUsername,
-                  ),
-                  ConfigScreenTextFieldMemory(
-                    label: 'PASSWORD:',
-                    isPasswordField: true,
-                    setTextFieldValue: setSessionPassword,
-                    getTextFieldValue: getSessionPassword,
-                  ),
-                  DropdownTile(
-                    label: 'SELECT ROLE:  ',
-                    dropdownList: ['Listener', 'Speaker'],
-                    isRoleDropdown: true,
-                  ),
-                  TranscriptSavingCheckboxTile(),
                   Padding(
                     padding: const EdgeInsets.all(15.0),
                     child: GestureDetector(
@@ -103,7 +78,7 @@ class CreateScreen extends StatelessWidget {
                         );
                       },
                       child: Text(
-                        'SESSION ID:     ${sessionIdGenerator()}',
+                        'SESSION ID:                     $sessionId',
                         textAlign: TextAlign.center,
                         style: kTextItLoudHeadingStyle.copyWith(
                           fontSize: 16.0,
@@ -111,41 +86,68 @@ class CreateScreen extends StatelessWidget {
                       ),
                     ),
                   ),
+                  TranscriptSavingCheckboxTile(),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 15.0),
+                    child: Text(
+                      'MEMBERS',
+                      textAlign: TextAlign.center,
+                      style: kTextItLoudHeadingStyle.copyWith(
+                          fontSize: 16.0, fontWeight: FontWeight.w300),
+                    ),
+                  ),
+                  Divider(
+                    height: 12.0,
+                    thickness: 1.2,
+                    color: Colors.black,
+                    indent: 80.0,
+                    endIndent: 80.0,
+                  ),
+                  StreamBuilder(
+                    stream: _firestore
+                        .collection('sessions')
+                        .document('$sessionId')
+                        .collection('listOfUsers')
+                        .snapshots(),
+                    builder: (BuildContext context, AsyncSnapshot snapshot) {
+                      if (!snapshot.hasData) {
+                        return Center(
+                          child: CircularProgressIndicator(
+                            backgroundColor: Colors.grey,
+                            valueColor:
+                                AlwaysStoppedAnimation<Color>(Colors.black),
+                          ),
+                        );
+                      }
+                      final users = snapshot.data.documents;
+                      List<Widget> userList = [];
+                      for (var user in users) {
+                        final username = user.data['username'];
+                        final userRole = user.data['role'];
+                        userList.add(Text(
+                          '$username - $userRole',
+                          textAlign: TextAlign.center,
+                          style: kTextItLoudHeadingStyle.copyWith(fontSize: 16),
+                        ));
+                      }
+                      return SizedBox(
+                        height: 250.0,
+                        width: 280.0,
+                        child: ListView(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 40.0, vertical: 20.0),
+                          children: userList,
+                        ),
+                      );
+                    },
+                  ),
                   // SelectableText()
                   Padding(
                     padding: const EdgeInsets.all(13.0),
                     child: RoundRectangleButton(
-                      title: 'START SESSION',
+                      title: 'CLOSE',
                       onTap: () {
-                        if (sessionUsername != '' &&
-                            sessionName != '' &&
-                            sessionPassword.length > 0) {
-                          _firestore
-                              .collection('sessions')
-                              .document('$sessionId')
-                              .setData({
-                            'session id': sessionId,
-                            'created by': sessionUsername,
-                            'session name': sessionName,
-                            'created on': DateTime.now(),
-                            'session password': sessionPassword,
-                          });
-                          _firestore
-                              .collection('sessions')
-                              .document('$sessionId')
-                              .collection('listOfMessages');
-                          _firestore
-                              .collection('sessions')
-                              .document('$sessionId')
-                              .collection('listOfUsers')
-                              .add({
-                            'username': sessionUsername,
-                            'role': sessionRole
-                          });
-                          Navigator.pushNamed(context, '/chat');
-                        } else {
-                          showInvalidDataDialog(context);
-                        }
+                        Navigator.pop(context);
                       },
                     ),
                   ),

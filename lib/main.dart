@@ -3,6 +3,7 @@ import 'package:text_it_loud/screens/chat_screen.dart';
 import 'package:text_it_loud/screens/create_join_screen.dart';
 import 'package:text_it_loud/screens/create_screen.dart';
 import 'package:text_it_loud/screens/join_screen.dart';
+import 'package:text_it_loud/screens/session_details.dart';
 import 'package:text_it_loud/screens/settings_screen.dart';
 import 'package:text_it_loud/screens/transcripts_screen.dart';
 import 'package:text_it_loud/screens/welcome_scren.dart';
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
     '/joinscreen': (context)=>JoinScreen(),
     '/chat': (context)=>ChatScreen(),
     '/settings': (context)=>SettingsScreen(),
+    '/sessiondetails':(context)=>SessionDetails(),
         },
       );
   }
